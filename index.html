@@ -3,120 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Interaktif Kediri Raya</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Kuis Kediri Raya Interaktif</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tautan ke file CSS terpisah -->
-    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="min-h-screen">
+<body>
 
-    <!-- Kontrol Audio (Tombol Mute/Unmute) -->
-    <div id="audio-control" class="audio-control" onclick="toggleAudio()">
-        <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-            <!-- Icon Volume Up (Default) -->
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.677a.641.641 0 0 1 0 1.126 10.027 10.027 0 0 1 0 11.233.641.641 0 0 1 0 1.126c-.452.257-.963.385-1.474.385-1.442 0-2.822-.644-3.778-1.782l-2.007-2.395c-.173-.205-.4-.36-.64-.465a5.502 5.502 0 0 0-1.115-.369c-.287 0-.575.051-.839.155l-.396.16c-1.455.578-2.999.866-4.523.866H6a.75.75 0 0 1-.75-.75V8.5c0-.414.336-.75.75-.75h.363a13.376 13.376 0 0 0 4.523.866l.396.16c.264.104.552.155.839.155.485 0 .964-.131 1.385-.386.239-.105.462-.26.638-.465l2.007-2.395c.956-1.138 2.336-1.782 3.778-1.782.511 0 1.022.128 1.474.385Z" />
-        </svg>
-    </div>
-
-    <!-- Kontainer Audio -->
     <audio id="background-music" loop preload="auto" volume="0.5">
-        <!-- Placeholder Audio: Ganti dengan URL audio khas Kediri jika tersedia -->
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-        Maaf, browser Anda tidak mendukung elemen audio.
-    </audio>
-    <audio id="sfx-correct" preload="auto">
-        <!-- Sound Effect Jawaban Benar -->
-        <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_338421b1b1.mp3?filename=correct-6033.mp3" type="audio/mp3">
-    </audio>
-    <audio id="sfx-wrong" preload="auto">
-        <!-- Sound Effect Jawaban Salah -->
-        <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_903328e82d.mp3?filename=wrong-6033.mp3" type="audio/mp3">
-    </audio>
-    <audio id="sfx-click" preload="auto">
-        <!-- Sound Effect Tombol Klik -->
-        <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_3d1e18d600.mp3?filename=short-success-sound-glitch-21245.mp3" type="audio/mp3">
+        <source src="SEMUT SEMUT MERAYAP - KEDIRIKU (OFFICIAL VIDEO KLIP) (1) (1) (1).mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
     </audio>
 
-    <!-- Halaman Utama (Home) -->
-    <div id="page-home" class="main-background-container">
-        <div class="main-background"></div>
-        <div class="card-elegant p-8 md:p-12 w-11/12 max-w-lg text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6">Kuis Kediri Raya</h1>
-            <p class="mb-6 text-gray-700">Selamat datang! Silakan isi data diri Anda untuk memulai petualangan kuis.</p>
-            <form id="player-form" onsubmit="startGame(event)">
-                <div class="space-y-4">
-                    <input type="text" id="player-name" placeholder="Nama Lengkap" required class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150">
-                    <input type="text" id="player-class" placeholder="Kelas" required class="w-full p-3 border-2 border-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150">
-                    <input type="text" id="player-school" placeholder="Asal Sekolah" required class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 transition duration-150">
+    <button id="mute-btn" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-white shadow-lg text-xl hover:scale-105 transition">
+        <svg id="audio-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.5 13.5l2-2 1-1-2-2-1 1-2 2-1-1-2-2 1-1-2-2-1 1-2 2 1 1-2 2 1 1 2-2 1-1-2-2 1-1-2 2-1 1zm-4-4l-1 1 2 2-1 1-2 2 1 1 2-2 1-1-2-2 1-1 2-2-1-1-2 2z"/>
+        </svg>
+    </button>
+
+    <div id="home-view" class="view-container active justify-center items-center relative z-10">
+        <div class="z-20 w-full max-w-md p-8 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl transition duration-500 ease-in-out transform hover:scale-[1.01]">
+            <h1 class="text-3xl font-extrabold text-center mb-6 text-gray-800">Kuis Kediri Raya</h1>
+            <p class="text-center text-sm mb-8 text-gray-600">Isi data diri Anda untuk memulai petualangan pengetahuan ini!</p>
+            
+            <form id="player-form" class="space-y-4">
+                <div>
+                    <label for="player-name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="player-name" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-inner focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition duration-150">
+                    <p id="name-error" class="text-red-500 text-xs mt-1 hidden">Nama wajib diisi.</p>
                 </div>
-                <button type="submit" class="btn-primary w-full mt-8 text-lg font-bold py-3 rounded-full shadow-lg hover:shadow-xl">
+                <div>
+                    <label for="player-class" class="block text-sm font-medium text-gray-700">Kelas</label>
+                    <input type="text" id="player-class" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-inner focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition duration-150">
+                    <p id="class-error" class="text-red-500 text-xs mt-1 hidden">Kelas wajib diisi.</p>
+                </div>
+                <div>
+                    <label for="player-school" class="block text-sm font-medium text-gray-700">Asal Sekolah</label>
+                    <input type="text" id="player-school" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-inner focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition duration-150">
+                    <p id="school-error" class="text-red-500 text-xs mt-1 hidden">Asal Sekolah wajib diisi.</p>
+                </div>
+                
+                <button type="submit" id="start-quiz-btn" class="modern-btn w-full mt-6 text-lg tracking-wide">
                     Mulai Kuis
                 </button>
-                <p id="form-error" class="text-red-500 mt-3 hidden text-sm"></p>
             </form>
         </div>
     </div>
 
-    <!-- Halaman Pemilihan Level -->
-    <div id="page-level-selection" class="hidden min-h-screen bg-gray-50 p-8 md:p-12">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 text-center">Level Kuis Kediri Raya</h1>
-            <p id="player-welcome" class="text-center text-lg text-gray-600 mb-8"></p>
-            <div id="level-list" class="level-grid">
-                <!-- Tombol Level akan dibuat di sini oleh JavaScript -->
+    <div id="level-select-view" class="view-container flex-col items-center justify-start bg-gray-100 z-10 p-4 sm:p-8">
+        <h1 class="text-4xl font-extrabold text-center mb-8 pt-4 text-gray-800">Level Kuis Kediri Raya</h1>
+        <p id="player-greeting" class="text-center text-lg mb-8 text-gray-600 font-semibold"></p>
+
+        <div id="level-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
             </div>
-            <div class="mt-12 text-center">
-                <button onclick="goToHome()" class="btn-secondary px-8 py-3 rounded-full font-semibold shadow-md">
-                    Kembali ke Halaman Utama
-                </button>
+        
+        <button id="back-to-home-btn" class="modern-btn mt-10" onclick="showView('home')">
+            Kembali ke Halaman Utama
+        </button>
+    </div>
+
+    <div id="quiz-view" class="view-container flex-col items-center justify-start bg-gray-50 z-10 p-4 sm:p-8">
+        <div class="w-full max-w-4xl bg-white p-6 sm:p-10 rounded-3xl shadow-2xl transition duration-500 space-y-6">
+            <h2 id="quiz-level-title" class="text-3xl font-extrabold text-center text-gray-800 mb-4 border-b-4 pb-2 border-yellow-500"></h2>
+            
+            <div id="question-container" class="min-h-[250px] flex flex-col justify-center">
+                </div>
+
+            <div id="feedback-container" class="text-center min-h-[50px] transition-opacity duration-300">
+                </div>
+
+            <div class="flex justify-between items-center pt-4 border-t">
+                <p class="text-xl font-bold text-gray-600">Soal <span id="current-question-number">1</span>/5</p>
+                <p class="text-xl font-bold text-gray-600">Skor: <span id="current-quiz-score">0</span></p>
             </div>
         </div>
     </div>
 
-    <!-- Halaman Kuis -->
-    <div id="page-quiz" class="hidden min-h-screen bg-gray-50 p-8 md:p-12 flex justify-center items-start">
-        <div class="max-w-2xl w-full bg-white p-6 md:p-10 card-elegant shadow-xl transition-transform duration-500">
-            <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h2 id="quiz-level-title" class="text-2xl font-bold text-blue-900"></h2>
-                <div class="text-xl font-semibold text-amber-600">
-                    Soal <span id="current-question-number">1</span> dari <span id="total-questions">5</span>
-                </div>
-            </div>
-            
-            <div id="question-container" class="slide-fade-enter-active">
-                <p id="quiz-question" class="text-xl mb-8 font-medium text-gray-800"></p>
-                <div id="quiz-options" class="space-y-4">
-                    <!-- Tombol Opsi Jawaban akan dibuat di sini -->
-                </div>
-            </div>
-            
-            <div class="mt-8 text-right">
-                <button id="next-question-btn" onclick="nextQuestion()" class="btn-primary px-8 py-3 rounded-full font-semibold shadow-lg hidden" disabled>
-                    Lanjut
-                </button>
-            </div>
-        </div>
-    </div>
+    <div id="result-view" class="view-container flex-col items-center justify-center bg-gray-100 z-10 p-4 sm:p-8">
+        <div class="w-full max-w-md p-10 bg-white rounded-3xl shadow-2xl text-center">
+            <h2 class="text-4xl font-extrabold mb-4 text-gray-800">Hasil Kuis Level <span id="result-level-num"></span></h2>
+            <p class="text-lg text-gray-600 mb-6">Selamat, <span id="result-player-name" class="font-semibold"></span>!</p>
 
-    <!-- Halaman Hasil Kuis -->
-    <div id="page-result" class="hidden min-h-screen bg-gray-50 p-8 md:p-12 flex justify-center items-center">
-        <div class="card-elegant p-8 md:p-12 w-11/12 max-w-lg text-center">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4">Hasil Kuis</h2>
-            <p id="result-message" class="text-2xl font-semibold mb-6"></p>
-            <div class="bg-amber-100 p-6 rounded-xl mb-8">
-                <p class="text-xl font-medium text-gray-700">Total Poin Anda:</p>
-                <p id="final-score" class="text-6xl font-bold text-amber-600 mt-2"></p>
+            <div id="score-display" class="p-6 rounded-2xl mb-8 transition-all duration-500">
+                <p class="text-3xl font-bold">Total Poin Anda:</p>
+                <p id="final-score" class="text-6xl font-extrabold mt-2" style="color: var(--color-primary);"></p>
             </div>
-            
+
+            <p id="result-message" class="text-xl font-semibold mb-8"></p>
+
             <div id="result-actions" class="space-y-4">
-                <!-- Tombol Aksi Hasil akan dibuat di sini -->
-            </div>
-            <p id="player-data-summary" class="text-sm mt-6 text-gray-500"></p>
+                </div>
         </div>
     </div>
 
-    <!-- Tautan ke file JavaScript terpisah -->
     <script src="script.js"></script>
+
 </body>
 </html>

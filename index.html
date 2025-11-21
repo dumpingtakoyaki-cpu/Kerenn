@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Ilmiah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <h2>Kalkulator Ilmiah 🚀</h2>
+        <div class="display-container">
+            <input type="text" id="display" class="display" value="" disabled>
+        </div>
+
+        <div class="button-grid">
+            <button class="scientific-btn" data-func="sqrt">sqrt(x)</button>
+            <button class="scientific-btn" data-func="pow">pow(x,y)</button>
+            <button class="scientific-btn" data-func="log">log(x,b)</button>
+            <button class="scientific-btn" data-func="sin">sin(x)</button>
+            <button class="scientific-btn" data-func="cos">cos(x)</button>
+            <button class="scientific-btn" data-func="tan">tan(x)</button>
+            
+            <button class="clear" data-func="clear">AC</button>
+            <button class="operator" data-op="/">/</button>
+            <button class="operator" data-op="*">*</button>
+            <button class="operator" data-op="-">-</button>
+            
+            <button class="number" data-num="7">7</button>
+            <button class="number" data-num="8">8</button>
+            <button class="number" data-num="9">9</button>
+            <button class="operator" data-op="+">+</button>
+
+            <button class="number" data-num="4">4</button>
+            <button class="number" data-num="5">5</button>
+            <button class="number" data-num="6">6</button>
+            <button class="operator-func" data-func="equals">=</button>
+
+            <button class="number" data-num="1">1</button>
+            <button class="number" data-num="2">2</button>
+            <button class="number" data-num="3">3</button>
+            <button class="number zero" data-num="0">0</button>
+            
+            <button class="number" data-num=".">.</button>
+            
+        </div>
+        <div class="note">Catatan: Fungsi $pow$, $log$ membutuhkan input ganda.</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

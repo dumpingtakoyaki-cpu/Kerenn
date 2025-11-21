@@ -24,11 +24,11 @@ document.getElementById('mute-btn').addEventListener('click', () => {
     if (isMuted) {
         bgMusic.pause();
         // Mute icon
-        icon.innerHTML = `<path d="M14.5 13.5l2-2 1-1-2-2-1 1-2 2-1-1-2-2 1-1-2-2-1 1-2 2 1 1-2 2 1 1 2-2 1-1-2-2 1-1-2 2-1 1zm-4-4l-1 1 2 2-1 1-2 2 1 1 2-2 1-1-2-2 1-1 2-2-1-1-2 2z"/>`; 
+        icon.innerHTML = <path d="M14.5 13.5l2-2 1-1-2-2-1 1-2 2-1-1-2-2 1-1-2-2-1 1-2 2 1 1-2 2 1 1 2-2 1-1-2-2 1-1-2 2-1 1zm-4-4l-1 1 2 2-1 1-2 2 1 1 2-2 1-1-2-2 1-1 2-2-1-1-2 2z"/>; 
     } else {
         bgMusic.play().catch(e => console.error("Error playing music:", e));
         // Unmute icon
-        icon.innerHTML = `<path d="M3 10v4h3l5 5V5L6 10H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.76 2.5-2.28 2.5-4.02zM14 5v2.02c2.78.72 5 3.39 5 6.98s-2.22 6.26-5 6.98V19c3.86-.71 7-4.14 7-8s-3.14-7.29-7-8z"/>`; 
+        icon.innerHTML = <path d="M3 10v4h3l5 5V5L6 10H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.76 2.5-2.28 2.5-4.02zM14 5v2.02c2.78.72 5 3.39 5 6.98s-2.22 6.26-5 6.98V19c3.86-.71 7-4.14 7-8s-3.14-7.29-7-8z"/>; 
     }
 });
 
@@ -170,7 +170,7 @@ const showView = (viewName) => {
         view.style.display = 'none'; // Ensure it is display:none
     });
 
-    const targetView = document.getElementById(`${viewName}-view`);
+    const targetView = document.getElementById(${viewName}-view);
     if (targetView) {
         targetView.style.display = 'flex'; // Set display before adding 'active'
         setTimeout(() => {
@@ -262,7 +262,7 @@ const renderLevelSelection = () => {
     const levelList = document.getElementById('level-list');
     levelList.innerHTML = ''; // Clear previous buttons
 
-    document.getElementById('player-greeting').textContent = `Halo ${player.name} (${player.class}, ${player.school}), pilih level yang ingin kamu mainkan!`;
+    document.getElementById('player-greeting').textContent = Halo ${player.name} (${player.class}, ${player.school}), pilih level yang ingin kamu mainkan!;
 
     quizData.forEach(data => {
         const isLocked = !isLevelUnlocked(data.level, scores);
@@ -296,7 +296,7 @@ const startQuiz = (level) => {
     currentLevel = level;
     currentQuestionIndex = 0;
     currentScore = 0;
-    document.getElementById('quiz-level-title').textContent = `Kuis Level ${level}: ${quizData[level - 1].theme}`;
+    document.getElementById('quiz-level-title').textContent = Kuis Level ${level}: ${quizData[level - 1].theme};
     document.getElementById('current-quiz-score').textContent = currentScore;
     
     showQuestion(0);
@@ -429,7 +429,7 @@ const showResult = () => {
     
     resultLevelNum.textContent = currentLevel;
     resultPlayerName.textContent = player.name;
-    finalScoreEl.textContent = `${currentScore} Poin`;
+    finalScoreEl.textContent = ${currentScore} Poin;
     resultActions.innerHTML = '';
     
     // Load existing scores and update the current level's score if it's higher

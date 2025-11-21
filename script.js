@@ -1,3 +1,10 @@
+const VIEWS = {
+    HOME: 'home',
+    LEVEL_SELECT: 'level-select',
+    QUIZ: 'quiz',
+    RESULT: 'result'
+};
+
 const QUIZ_SETTINGS = {
     POINTS_CORRECT: 20,
     POINTS_WRONG: -10,
@@ -494,4 +501,3 @@ window.onload = () => {
     // Initial view is HOME
     showView(VIEWS.HOME);
 };
-

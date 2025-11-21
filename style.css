@@ -1,154 +1,135 @@
-/* Custom styles untuk glow, font, dan background */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f7f7f7;
-    overflow-x: hidden;
-    color: #333;
+/* Custom Styles for Kediri Theme and Animations */
+:root {
+    --color-primary: #003366; /* Deep Blue, like the river or night sky */
+    --color-secondary: #FFD700; /* Gold/Yellow, symbolizing prosperity */
+    --color-success: #10B981; /* Green for success */
+    --color-error: #EF4444; /* Red for error */
+    --glow-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
-/* Background blur untuk halaman utama */
-.main-background {
-    /* Placeholder untuk Simpang Lima Gumul (SLG) - Ganti dengan gambar SLG Anda */
-    background-image: url('https://placehold.co/1920x1080/017d91/ffffff?text=Simpang+Lima+Gumul');
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-primary);
+    overflow: hidden; /* Prevent body scroll when views are toggled */
+}
+
+/* Full Screen View Containers */
+.view-container {
+    min-height: 100vh;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    padding: 1rem;
+}
+
+.view-container.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Home Page Background (Simpang Lima Gumul - SLG) */
+#home-view {
+    /* Ganti URL gambar di sini */
+    background-image: url('Monumen-Simpang-Lima-Gumul.jpg');
     background-size: cover;
     background-position: center;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
+    position: relative;
+}
+
+/* Soft blur overlay with gold tint */
+#home-view::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transition: opacity 1s ease;
-}
-.main-background-container {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(5px); /* Sedikit mengurangi blur agar gambar lebih terlihat */
+    background-color: rgba(255, 215, 0, 0.2); /* Sentuhan warna gold */
+    box-shadow: inset 0 0 100px rgba(255, 215, 0, 0.3); /* Kilauan emas di dalam overlay */
 }
 
-/* Desain Card Elegansi */
-.card-elegant {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Tombol Level dengan Glow/Hover */
-.btn-level {
-    transition: all 0.3s ease;
-    transform: scale(1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.btn-level:hover:not(.locked) {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5), 0 4px 10px rgba(0, 0, 0, 0.3); /* Glow Keemasan */
-}
-
-/* Warna Biru Keemasan Khas Kediri */
-.btn-primary {
-    background-color: #FFC107; /* Emas */
-    color: #172554;
+/* Modern Button Styles */
+.modern-btn {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
     transition: all 0.3s ease;
 }
-.btn-primary:hover {
-    background-color: #FFD700;
+
+.modern-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
 }
-.btn-secondary {
-    background-color: #017d91; /* Biru Tua */
-    color: white;
+
+.modern-btn:disabled {
+    background-color: #A0AEC0;
+    color: #4A5568;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+/* Level Button Specific Styles */
+.level-btn-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem 2rem 0.5rem 0.5rem; /* Oval depan bawah effect */
+    transform: skew(-5deg); /* Slight skew for dynamic look */
     transition: all 0.3s ease;
 }
-.btn-secondary:hover {
-    background-color: #0294ae;
-    transform: translateY(-1px);
+
+.level-btn-container:hover:not(.locked) {
+    transform: scale(1.03) skew(-5deg);
 }
 
-/* Level yang Terkunci */
-.locked {
-    background-color: #cccccc !important;
-    color: #666666 !important;
-    opacity: 0.6;
-    cursor: not-allowed;
+.level-btn {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    font-size: 1.25rem;
+    text-align: left;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    transition: all 0.3s ease;
+    transform: skew(5deg); /* Counter-skew the text */
+}
+
+.level-btn:hover:not(:disabled) {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    text-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
+    box-shadow: var(--glow-shadow);
+}
+
+.level-btn-container.locked {
+    opacity: 0.4;
     pointer-events: none;
-    box-shadow: none !important;
 }
 
-/* Animasi Slide & Fade (Menggunakan CSS Transisi) */
-.slide-fade-enter-active, .slide-fade-leave-active {
-  transition: all 0.5s ease;
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
+/* Quiz Question Animation */
+.question-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlide 0.5s forwards;
 }
 
-/* Opsi Jawaban */
-.option-button {
-    border: 2px solid #017d91;
-    background-color: #ffffff;
-    transition: all 0.2s ease;
+@keyframes fadeInSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-.option-button:hover {
-    background-color: #e0f7fa;
-    border-color: #FFC107;
-    transform: translateY(-1px);
-}
-.option-button.selected {
-    background-color: #FFC107;
-    border-color: #017d91;
-    color: #172554;
-    box-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
-}
-.option-button.correct {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-    color: white;
-}
-.option-button.wrong {
-    background-color: #F44336;
-    border-color: #F44336;
-    color: white;
+/* Animation for Wrong Answer Feedback */
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+  20%, 40%, 60%, 80% {transform: translateX(10px);}
 }
 
-/* Layout Grid untuk Level */
-.level-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-}
-
-/* Audio Control Button Style */
-.audio-control {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 50;
-    background-color: #017d91;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.audio-control:hover {
-    background-color: #0294ae;
-}
-
-/* Efek Oval Depan Bawah */
-.oval-bottom {
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
+.animate-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
 }
